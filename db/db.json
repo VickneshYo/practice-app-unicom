@@ -1,0 +1,52 @@
+{
+  "parts": [
+    {
+      "name": "Headlight Bulb",
+      "available_stock": 5,
+      "shelve_number": "002",
+      "id": 1
+    },
+    {
+      "name": "Brake oil ",
+      "available_stock": 48,
+      "shelve_number": "004",
+      "bikeModels": [],
+      "id": 2
+    },
+    {
+      "name": "Brake Shoe",
+      "available_stock": 87,
+      "shelve_number": "001",
+      "bikeModels": [],
+      "id": 3
+    },
+    {
+      "name": "Accelerator Cable",
+      "available_stock": 36,
+      "shelve_number": "002",
+      "bikeModels": [],
+      "id": 4
+    },
+    {
+      "name": "Clutch Cable",
+      "available_stock": 18,
+      "shelve_number": "003",
+      "bikeModels": [],
+      "id": 5
+    },
+    {
+      "name": "Motor Plug",
+      "available_stock": 84,
+      "shelve_number": "005",
+      "bikeModels": [],
+      "id": 6
+    },
+    {
+      "name": "Engine Oil",
+      "available_stock": 28,
+      "shelve_number": "005",
+      "bikeModels": [],
+      "id": 7
+    }
+  ]
+}

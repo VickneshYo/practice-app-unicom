@@ -1,0 +1,54 @@
+<h1>Update Parts</h1>
+
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success!</strong> Parts Details are updated Successfully.<br><br>
+  <strong>Lastly Updated Data:</strong>
+  <br>
+  Part's name: {{parts.name}}
+  <br>
+  Available Stock: {{parts.available_stock}}
+  <br>
+  Shelve Number: {{parts.shelve_number}}
+  <br><br>
+  <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="updateParts" (ngSubmit)="updateMotorParts()">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control col-sm-4"  placeholder="Enter parts name" formControlName="name">
+      <span class="error" *ngIf="name?.invalid && name?.touched">Parts name is Required.</span>
+    </div><br>
+    <div class="form-group">
+        <label>Stock Available</label>
+        <input type="number" min="1" class="form-control col-sm-4"  placeholder="Enter available Stock" formControlName="available_stock">
+        <span class="error" *ngIf="available_stock?.invalid && available_stock?.touched">Input is not valid.</span>
+      </div><br>
+    
+    <div class="form-group">
+        <label >Select Shelve Number</label>
+        <select class="form-control col-sm-4" formControlName="shelve_number"  >
+          <option>001</option>
+          <option>002</option>
+          <option>003</option>
+          <option>004</option>
+          <option>005</option>
+        </select>
+      </div>
+    <br>
+    <div class="form-group">
+      <button type="button" class="button btn-secondary btn-sm m-2" (click)="addBikeModels()">Add Bike Model</button>
+      <div formArrayName = "bikeModels" *ngFor = "let model of bikeModels.controls; let i=index">
+        <div class="input-group">
+      <input type="text" class="form-control my-1 col-sm-4" [formControlName] ="i">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary btn-sm" type="button" (click)="delInput(i)"><i class="fa fa-close"></i></button>
+      </div>
+    </div>
+    </div>
+    </div>
+    <br>
+    <button type="submit" [disabled]="updateParts.invalid" class="btn btn-primary" >Update</button>
+  </form>

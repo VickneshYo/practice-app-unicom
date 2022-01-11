@@ -1,0 +1,52 @@
+
+<div *ngIf="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Success!</strong> Parts Deleted Successfully.
+  <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" name="partsName" [(ngModel)]="partsName" (ngModelChange)="Search()">
+  <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+</form><br>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" (click)="sort('id')">#&nbsp;<i class="fa fa-sort"></i></th>
+        <th scope="col"  (click)="sort('name')">Name&nbsp;<i class="fa fa-sort"></i></th>
+        <th scope="col"  (click)="sort('available_stock')">Available Stocks&nbsp;<i class="fa fa-sort"></i></th>
+        <th scope="col">shelve Numbers</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of parts | orderBy: key: reverse | paginate:{itemsPerPage:3, currentPage:p}; ">
+        <th scope="row">{{item.id}}</th>
+        <td >{{item.name}}</td>
+        <td >{{item.available_stock}}</td>
+        <td>{{item.shelve_number}}</td>
+        <td> <i (click)="open(content,item.id)" class="fa fa-trash" style="font-size:20px;color:red;"></i> </td>
+        <td><a routerLink="/update-parts/{{item.id}}"><i class="fa fa-edit" style="font-size:20px;color:blue;"></i></a>  </td>
+      </tr>
+    </tbody>
+   
+  </table>
+  <pagination-controls class="pagination" (pageChange)="p = $event" ></pagination-controls>
+  
+  <ng-template #content let-c="close" let-d="dismiss">    
+    <div class="modal-header">    
+        <h4 class="modal-title alert alert-danger" id="modal-basic-title">Confirmation</h4>    
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">    
+            <span aria-hidden="true">×</span>    
+        </button>    
+    </div>    
+    <div class="modal-body alert alert-danger">    
+        <p>Are you sure to delete this parts?</p>    
+    </div>    
+    <div class="modal-footer">    
+        <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">Cancel</button>    
+        <button type="button" class="btn btn-outline-danger" (click)="c('yes')">Yes</button>    
+    </div>    
+</ng-template>  
